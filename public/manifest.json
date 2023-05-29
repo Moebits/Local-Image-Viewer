@@ -1,0 +1,16 @@
+{
+    "short_name": "localimageviewer",
+    "name": "Local Image Viewer",
+    "description": "A local image viewer.",
+    "icons": [
+      {
+        "src": "assets/icons/favicon.png",
+        "sizes": "128x128",
+        "type": "image/png"
+      }
+    ],
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#000000",
+    "background_color": "#000000"
+  }
