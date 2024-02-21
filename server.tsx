@@ -79,7 +79,7 @@ app.get("/*", function(req, res, next) {
 const run = async () => {
   writeFolderJSON()
   writeFileJSON()
-  app.listen(process.env.PORT || 8085, () => console.log("Started the website server!"))
+  app.listen(process.env.PORT || 8083, () => console.log("Started the website server!"))
 }
 
 run()

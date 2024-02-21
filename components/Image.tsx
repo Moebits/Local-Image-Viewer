@@ -25,6 +25,8 @@ const Image: React.FunctionComponent<Props> = (props) => {
     const ref = useRef<HTMLCanvasElement>(null)
     const history = useHistory()
 
+    if (!props.img.endsWith("png") && !props.img.endsWith("jpg") && !props.img.endsWith("jpeg")) return null
+
     return (
         <div className="image-filters" onMouseEnter={() => setEnableDrag(true)} style={{filter: `brightness(${brightness}%) contrast(${contrast}%) hue-rotate(${hue - 180}deg) saturate(${saturation}%) blur(${blur}px)`}}>
             <img className="image" src={props.img} style={{height: `${imageSize}px`}}/>
