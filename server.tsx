@@ -36,14 +36,17 @@ if (process.env.TESTING === "yes") {
 app.use(express.static(path.join(__dirname, "./public")))
 app.use(express.static(path.join(__dirname, "./dist"), {index: false}))
 app.use("/assets", express.static(path.join(__dirname, "./assets")))
-app.use("/images", express.static(path.join(__dirname, "./images")))
+
+const getImagesLocation = () => {
+  return process.env.FOLDER ? process.env.FOLDER : path.join(__dirname, "./images")
+}
 
 const getDirectories = (source: string) => {
   return fs.readdirSync(source, {withFileTypes: true}).filter(file => file.isDirectory()).map(file => `"${file.name}"`)
 }
 
 const writeFolderJSON = () => {
-  let json = `{"folders": [${getDirectories(path.join(__dirname, "./images")).join(", ")}]}`
+  let json = `{"folders": [${getDirectories(getImagesLocation()).join(", ")}]}`
   fs.writeFileSync(path.join(__dirname, "./assets/misc/folders.json"), json)
 }
 
@@ -52,13 +55,19 @@ const getFiles = (source: string) => {
 }
 
 const writeFileJSON = () => {
-  const directories = getDirectories(path.join(__dirname, "./images"))
+  const directories = getDirectories(getImagesLocation())
   for (let i = 0; i < directories.length; i++) {
     const directory = directories[i].replaceAll("\"", "")
-    let json = `{"files": [${getFiles(path.join(__dirname, "./images", directory)).join(", ")}]}`
-    fs.writeFileSync(path.join(__dirname, `./images/${directory}/files.json`), json)
+    let json = `{"files": [${getFiles(path.join(getImagesLocation(), directory)).join(", ")}]}`
+    fs.writeFileSync(path.join(getImagesLocation(), `./${directory}/files.json`), json)
   }
 }
+
+app.get("/images/*", function(req, res, next) {
+  const filename = req.path.replace("/images/", "")
+  const file = fs.readFileSync(path.join(getImagesLocation(), decodeURIComponent(filename)))
+  res.status(200).send(file)
+})
 
 app.get("/update", function(req, res, next) {
   writeFolderJSON()
