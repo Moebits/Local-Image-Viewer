@@ -20,12 +20,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tenpi/Local-Image-Viewer"
+    "url": "https://github.com/Moebits/Local-Image-Viewer"
   },
-  "author": "Moepi",
+  "author": "Moebits",
   "license": "MIT",
   "devDependencies": {
-    "@tenpi/tslint": "^1.1.0",
     "@types/less": "^3.0.1",
     "@types/mime-types": "^2.1.1",
     "@types/node": "^14.6.2",
