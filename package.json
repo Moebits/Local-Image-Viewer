@@ -50,7 +50,7 @@
     "cors": "^2.8.5",
     "express": "^4.17.3",
     "gif-encoder": "^0.7.2",
-    "gif-frames": "github:Moebytes/gif-frames#no-cumulative",
+    "gif-frames": "github:Moestash/gif-frames#no-cumulative",
     "image-js": "^0.35.3",
     "image-pixels": "^2.2.2",
     "jszip": "^3.10.1",
