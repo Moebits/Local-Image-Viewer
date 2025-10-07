@@ -1,6 +1,5 @@
 const fs = require("fs")
 const path = require("path")
-const child_process = require("child_process")
 
 const getDirectories = (source) => {
     return fs.readdirSync(source, {withFileTypes: true}).filter(file => file.isDirectory()).map(file => `"${file.name}"`)
@@ -26,5 +25,4 @@ const getDirectories = (source) => {
   }
 
 writeFolderJSON()
-child_process.execSync("cp -r /Users/chris/Documents/Moepi/Programming/Websites/local-image-viewer/images /Users/chris/Documents/Moepi/Programming/Websites/local-image-viewer/dist")
 writeFileJSON()
